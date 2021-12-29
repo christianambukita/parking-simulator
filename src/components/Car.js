@@ -39,7 +39,7 @@ export default function Car(){
     const [wheelAngle, setAngle] = useState(0)
 
     function setTranslation(direction, {translation: oldT, rotationAngle: oldR} = carPosition){
-        //direction: true - forward, false - backward
+        //direction: true = forward, false = backward
         let newStep = (direction ? -1 : 1 ) * moveStep.translation
         
         const {translation: newT, rotationAngle:  newR} = getCarTranslation(newStep)
@@ -54,7 +54,7 @@ export default function Car(){
     }
 
     function setAngleWrap(direction){
-        //direction: true - right, false - left
+        //direction: true = right, false = left
         let newStep = (direction ? 1 : -1 ) * moveStep.rotation
         let newAngle = wheelAngle + newStep
         //console.table({direction, newStep, newAngle, wheelAngle, moveStep})
@@ -112,12 +112,11 @@ export default function Car(){
 
         //adjust x translation direction and rotation
         const direction = wheelAngle > 0 ? -1 : 1
-        //translation.x *= direction
+
         let rotationAngle =  alpha * direction
-        //console.table({translation, rotationAngle, direction})
-        return { translation, rotationAngle}
+
+        return { translation, rotationAngle }
     }
-    
 
     function handleKeyDown({key}){
         console.log(key)
