@@ -7,3 +7,5 @@ My inspiration was my girlfriend who started driving recently and had a little t
 
 ## Challenge
 I tried my best to mimic real life car behavior during turning which is crutial in parking. To do this I had to make sure that cars center of roration is in point of intersection of rear wheels axis and front wheel axis.
+
+**[view live version](https://parking-sim-experiment.netlify.app/)**
