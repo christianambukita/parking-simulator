@@ -1,0 +1,61 @@
+.instruction{
+    position: absolute;
+}
+
+/* keys */
+@media(max-width: 700px){
+    
+}
+.keys{
+    width: 300px;
+    height: 200px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 
+    ". key1 ."
+    "key4 key3 key2";
+}
+
+.key{
+    --background: hsl(0, 0%, 70%);
+    --arrow-color: hsl(0, 0%, 30%);
+    box-sizing: border-box;
+    background: var(--background);
+    border: 1px solid var(--arrow-color);
+    border-radius: 8%;
+}
+
+.k-top{
+    grid-area: key1;
+}
+.k-right{
+    grid-area: key2;
+    transform: rotate(90deg);
+}
+.k-bottom{
+    grid-area: key3;
+    transform: rotate(180deg);
+}
+.k-left{
+    grid-area: key4;
+    transform: rotate(-90deg);
+}
+
+/* arrows */
+.arrow-container{
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.arrow-head{
+    box-sizing: content-box;
+    border: 8px solid var(--background);
+    border-bottom: 16px solid var(--arrow-color);
+    border-radius: 10%;
+}
+.arrow-body{
+    width: 4px;
+    height: 20px;
+    background: var(--arrow-color);
+    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}

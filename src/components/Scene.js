@@ -10,6 +10,7 @@ export default function Scene(){
         <div className="scene-container flex-container">
             <div className="scene">
                 <Car />
+                
             </div>
         </div>
     )
