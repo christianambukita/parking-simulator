@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useRef, useState } from 'react'
 import '../css/Car.css'
 
@@ -24,7 +25,7 @@ const CAR_CONFIG = {
         rotationAngle: 0
     },
     moveStep: {
-        translation: 10,
+        translation: 5,
         rotation: 5,
     }
 }
@@ -76,7 +77,7 @@ export default function Car(){
             //Radius from wheel center to center of rotation
             let R = wheel.distance.vertical * Math.tan(degToRad(GAMMA))
             //Radius from car center of symetry to center of rotation
-            R += wheel.distance.horizontal / 2
+            //R += wheel.distance.horizontal / 2
             //console.log(wheel.distance.vertical, GAMMA, R)
             return R
         }
@@ -118,13 +119,19 @@ export default function Car(){
         return { translation, rotationAngle }
     }
 
-    function handleKeyDown({key}){
-        console.log(key)
+    useEffect(()=>{
+        carRef.current.scrollIntoView({behacior: "smooth", block:"center", inline:"center"});
+    },[carPosition])
+
+    function handleKeyDown(e){
+        let {key} = e;
         switch(key){
             case "ArrowUp":
+                e.preventDefault()
                 setTranslation(true)
                 break;
             case "ArrowDown":
+                e.preventDefault()
                 setTranslation(false)
                 break;
             case "ArrowRight":
