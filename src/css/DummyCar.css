@@ -1,0 +1,46 @@
+.dummy-car-container{
+    position:relative;
+    width: 120px;
+    height: 200px;
+}
+
+.dummy-car-body{
+    position: absolute;
+    --c1: hsl(0, 75%, 50%);
+    --c2: hsl(50, 75%, 50%);
+    --c3: hsl(100, 55%, 50%);
+    --c4: hsl(175, 45%, 50%);
+    --c5: hsl(200, 75%, 50%);
+    --c6: hsl(250, 45%, 30%);
+    --c7: hsl(277, 55%, 50%);
+    --c8: hsl(370, 85%, 50%);
+    --c9: hsl(350, 0%, 50%);
+    --c10: hsl(350, 0%, 30%);
+    --c11: hsl(0, 0%, 10%);
+    --c0: hsl(0, 0%, 90%);
+
+
+    background: var(--c9);
+    width: 100px;
+    height: 200px;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.dummy-car-wheels{
+    background: var(--wheel-color);
+    width: 120px;
+    height: 50px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.d-c-top{
+    top: 35px;
+}
+
+.d-c-bottom{
+    bottom: 15px;
+}
