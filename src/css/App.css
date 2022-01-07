@@ -1,6 +1,8 @@
 body{
   --color1: rgb(255, 204, 51);
   --color2: hsl(0, 0%, 20%);
+  --road-line: hsl(0, 0%, 90%);
+  --ground-1: hsl(0, 0%, 50%);
   background: var(--color2);
 }
 
