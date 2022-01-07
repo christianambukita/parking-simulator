@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sceneReducer from "./SceneSlice"
-
+import sceneReducer from './SceneSlice';
 
 export const store = configureStore({
-  reducer: {
-    scene: sceneReducer,
-  },
+	reducer: {
+		scene: sceneReducer,
+	},
 });

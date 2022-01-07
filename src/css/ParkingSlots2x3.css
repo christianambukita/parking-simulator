@@ -1,29 +1,29 @@
-.parking-slots{
-    height: 800px;
-    width: 600px;
-    background: var(--ground-1);
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+.parking-slots {
+	height: 800px;
+	width: 600px;
+	background: var(--ground-1);
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
 }
-.parking-slots-container{
-    width: 100%;
-    justify-content: space-between;
+.parking-slots-container {
+	width: 100%;
+	justify-content: space-between;
 }
-.slot-line{
-    border-radius: 3px;
-    width: 20px;
-    height: 240px;
-    background: var(--road-line);
-}
-
-.endline{
-    width: 100%;
-    background: var(--road-line);
-    height: 20px;
-    position:absolute;
+.slot-line {
+	border-radius: 3px;
+	width: 20px;
+	height: 240px;
+	background: var(--road-line);
 }
 
-.bottom-line{
-    bottom:0;
+.endline {
+	width: 100%;
+	background: var(--road-line);
+	height: 20px;
+	position: absolute;
+}
+
+.bottom-line {
+	bottom: 0;
 }
