@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import '../css/ParkingSlots.css';
-import { setSlotsPositions } from './redux/SceneSlice';
+import { selectParked, setSlotsPositions } from './redux/SceneSlice';
 
 let initialState = {};
 for (let i = 0; i < 10; i++) {
@@ -10,6 +11,7 @@ for (let i = 0; i < 10; i++) {
 
 export default function ParkingSlots() {
 	const dispatch = useDispatch();
+	const { payload: carParked } = useSelector(selectParked);
 	const slotRefs = {
 		0: useRef(null),
 		1: useRef(null),
@@ -32,41 +34,40 @@ export default function ParkingSlots() {
 		});
 		dispatch(setSlotsPositions(newPositions));
 	}
+
 	useEffect(() => {
 		getSlotsPositions();
-		//console.log(window.scrollY);
+		window.addEventListener('scroll', getSlotsPositions);
+		window.addEventListener('resize', getSlotsPositions);
+		return () => {
+			window.removeEventListener('scroll', getSlotsPositions);
+			window.removeEventListener('resize', getSlotsPositions);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	function toParkingSlots(array) {
+		return array.map((index) => (
+			<div className='flex-container' key={`p-${index}`}>
+				<div
+					ref={slotRefs[index]}
+					className={`slot${
+						carParked && carParked[index] ? ' parked' : ''
+					}`}></div>
+				<div className='slot-line'></div>
+			</div>
+		));
+	}
 	return (
 		<div className='parking-slots flex-container'>
-			<div className='endline'></div>
 			<div className='parking-slots-container flex-container'>
 				<div className='slot-line'></div>
-				<div ref={slotRefs[0]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[1]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[2]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[3]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[4]} className='slot'></div>
-				<div className='slot-line'></div>
+				{toParkingSlots([0, 1, 2, 3, 4])}
 			</div>
 			<div className='parking-slots-container flex-container'>
 				<div className='slot-line'></div>
-				<div ref={slotRefs[5]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[6]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[7]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[8]} className='slot'></div>
-				<div className='slot-line'></div>
-				<div ref={slotRefs[9]} className='slot'></div>
-				<div className='slot-line'></div>
+				{toParkingSlots([5, 6, 7, 8, 9])}
 			</div>
-			<div className='endline bottom-line'></div>
 		</div>
 	);
 }

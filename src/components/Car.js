@@ -161,7 +161,7 @@ export default function Car() {
 		const box = carRef.current.getBoundingClientRect();
 		const { top, bottom, left, right } = box;
 		dispatch(setCarPosition({ top, bottom, left, right }));
-	}, [carPosition]);
+	}, [carPosition, dispatch]);
 
 	return (
 		<>

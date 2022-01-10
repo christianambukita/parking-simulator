@@ -5,7 +5,8 @@
 	--slot-height: 240px;
 	--slots-count: 5;
 	--slot-width: calc(
-		var(--parking-width) / var(--slots-count) - var(--slot-line-width)
+		(var(--parking-width) - var(--slot-line-width)) / var(--slots-count) -
+			var(--slot-line-width)
 	);
 	height: 800px;
 	width: 1000px;
@@ -14,6 +15,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	position: relative;
+	border-block: var(--slot-line-width) solid var(--road-line);
 }
 .parking-slots-container {
 	width: 100%;
@@ -40,4 +42,9 @@
 .slot {
 	width: var(--slot-width);
 	height: var(--slot-height);
+}
+
+.parked {
+	box-sizing: border-box;
+	border: 15px solid hsla(100, 50%, 50%, 0.5);
 }

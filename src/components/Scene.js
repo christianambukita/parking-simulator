@@ -12,26 +12,26 @@ export default function Scene() {
 	const { payload: slotsPositions } = useSelector(selectSlots);
 	const dispatch = useDispatch();
 
-	function isCarParked() {
-		const { left, right, top, bottom } = carPosition;
-		let carParkedState = {};
-		Object.keys(slotsPositions).forEach((index) => {
-			const slot = slotsPositions[index];
-			let conditionsPassed = 0;
-			carParkedState[index] = false;
-			if (left > slot.left) conditionsPassed++;
-			if (right < slot.right) conditionsPassed++;
-			if (top > slot.top) conditionsPassed++;
-			if (bottom < slot.bottom) conditionsPassed++;
-			if (conditionsPassed === 4) carParkedState[index] = true;
-		});
-		dispatch(setParked(carParkedState));
-	}
 	useEffect(() => {
+		function isCarParked() {
+			const { left, right, top, bottom } = carPosition;
+			let carParkedState = {};
+			Object.keys(slotsPositions).forEach((index) => {
+				const slot = slotsPositions[index];
+				let conditionsPassed = 0;
+				carParkedState[index] = false;
+				if (left > slot.left) conditionsPassed++;
+				if (right < slot.right) conditionsPassed++;
+				if (top > slot.top) conditionsPassed++;
+				if (bottom < slot.bottom) conditionsPassed++;
+				if (conditionsPassed === 4) carParkedState[index] = true;
+			});
+			dispatch(setParked(carParkedState));
+		}
 		if (carPosition && slotsPositions) {
 			isCarParked();
 		}
-	}, [carPosition]);
+	}, [carPosition, dispatch, slotsPositions]);
 
 	return (
 		<div className='scene-container flex-container'>
