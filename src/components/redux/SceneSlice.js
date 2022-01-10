@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
-	carPosition: {
-		y: 200,
-		rotationAngle: 0,
-		wheelAngle: 0,
-	},
+	carPosition: {},
+	slotsPositions: {},
+	carParked: undefined,
 };
 
 export const sceneSlice = createSlice({
@@ -12,23 +10,22 @@ export const sceneSlice = createSlice({
 	initialState,
 
 	reducers: {
-		goForward: (state) => {
-			state.carPosition.y -= 5;
+		setCarPosition: (state, payload) => {
+			state.carPosition = payload;
 		},
-		goBackward: (state) => {
-			state.carPosition.y += 5;
+		setSlotsPositions: (state, payload) => {
+			state.slotsPositions = payload;
 		},
-		setAngleLeft: (state) => {
-			state.carPosition.wheelAngle -= 5;
-		},
-		setAngleRight: (state) => {
-			state.carPosition.wheelAngle += 5;
+		setParked: (state, payload) => {
+			state.carParked = payload;
 		},
 	},
 });
 
-export const { goForward, goBackward, setAngleLeft, setAngleRight } =
+export const { setCarPosition, setSlotsPositions, setParked } =
 	sceneSlice.actions;
-export const selectPosition = (state) => state.scene.carPosition;
+export const selectSlots = (state) => state.scene.slotsPositions;
+export const selectCar = (state) => state.scene.carPosition;
+export const selectParked = (state) => state.scene.carParked;
 
 export default sceneSlice.reducer;

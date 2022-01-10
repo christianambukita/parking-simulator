@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import '../css/Car.css';
+import { setCarPosition } from './redux/SceneSlice';
 
 const degToRad = (deg) => (deg * Math.PI) / 180;
 
@@ -32,6 +34,7 @@ const CAR_CONFIG = {
 
 export default function Car() {
 	const carRef = useRef(null);
+	const dispatch = useDispatch();
 
 	const { wheel, initialPosition, moveStep } = CAR_CONFIG;
 
@@ -155,7 +158,9 @@ export default function Car() {
 		}
 	}
 	useEffect(() => {
-		console.log(carRef.current.getBoundingClientRect());
+		const box = carRef.current.getBoundingClientRect();
+		const { top, bottom, left, right } = box;
+		dispatch(setCarPosition({ top, bottom, left, right }));
 	}, [carPosition]);
 
 	return (
