@@ -123,13 +123,13 @@ export default function Car() {
 		return { translation, rotationAngle };
 	}
 
-	useEffect(() => {
-		carRef.current.scrollIntoView({
-			behacior: 'smooth',
-			block: 'center',
-			inline: 'center',
-		});
-	}, [carPosition]);
+	// useEffect(() => {
+	// 	carRef.current.scrollIntoView({
+	// 		behacior: 'smooth',
+	// 		block: 'center',
+	// 		inline: 'center',
+	// 	});
+	// }, [carPosition]);
 
 	function handleKeyDown(e) {
 		let { key } = e;
@@ -154,6 +154,9 @@ export default function Car() {
 				return;
 		}
 	}
+	useEffect(() => {
+		console.log(carRef.current.getBoundingClientRect());
+	}, [carPosition]);
 
 	return (
 		<>
