@@ -30,8 +30,8 @@ export default function ParkingSlots({ setScale, scale }) {
 		let newPositions = {};
 		Object.keys(slotRefs).forEach((index) => {
 			const box = slotRefs[index].current.getBoundingClientRect();
-			let { top, bottom, left, right } = box;
-			newPositions[index] = { top, bottom, left, right };
+			let { top, bottom, left, right, width, height } = box;
+			newPositions[index] = { top, bottom, left, right, width, height };
 		});
 		dispatch(setSlotsPositions(newPositions));
 		setScaleWrap();

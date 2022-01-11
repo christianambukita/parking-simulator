@@ -1,13 +1,4 @@
 .parking-slots {
-	--parking-width: 1000px;
-	--parking-height: 800px;
-	--slot-line-width: 20px;
-	--slot-height: 240px;
-	--slots-count: 5;
-	--slot-width: calc(
-		(var(--parking-width) - var(--slot-line-width)) / var(--slots-count) -
-			var(--slot-line-width)
-	);
 	height: 800px;
 	width: 1000px;
 

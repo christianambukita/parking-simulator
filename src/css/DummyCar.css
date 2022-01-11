@@ -1,7 +1,9 @@
 .dummy-car-container {
-	position: relative;
+	position: absolute;
 	width: 120px;
 	height: 200px;
+	top: 0;
+	left: 0;
 }
 
 .dummy-car-body {
@@ -14,7 +16,7 @@
 	--c6: hsl(250, 45%, 30%);
 	--c7: hsl(277, 55%, 50%);
 	--c8: hsl(370, 85%, 50%);
-	--c9: hsl(350, 0%, 50%);
+	--c9: hsl(350, 0%, 70%);
 	--c10: hsl(350, 0%, 30%);
 	--c11: hsl(0, 0%, 10%);
 	--c0: hsl(0, 0%, 90%);

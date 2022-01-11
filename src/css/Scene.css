@@ -1,9 +1,22 @@
 .scene-container {
 	height: 100vh;
 	width: 100%;
+	position: relative;
 }
 
 .scene {
+	--parking-width: 1000px;
+	--parking-height: 800px;
+	--slot-line-width: 20px;
+	--slot-height: 240px;
+	--slots-count: 5;
+	--slot-width: calc(
+		(var(--parking-width) - var(--slot-line-width)) / var(--slots-count) -
+			var(--slot-line-width)
+	);
+
+	width: var(--parking-width);
+	height: var(--parking-height);
 	position: absolute;
 	top: 0;
 	left: 0;
