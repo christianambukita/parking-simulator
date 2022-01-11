@@ -21,10 +21,10 @@ const CAR_CONFIG = {
 	},
 	initialPosition: {
 		translation: {
-			x: 200,
-			y: 200,
+			x: 80,
+			y: 380,
 		},
-		rotationAngle: 0,
+		rotationAngle: 90,
 	},
 	moveStep: {
 		translation: 5,
