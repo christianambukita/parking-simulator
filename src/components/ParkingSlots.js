@@ -9,8 +9,9 @@ for (let i = 0; i < 10; i++) {
 	initialState[i] = {};
 }
 
-export default function ParkingSlots() {
+export default function ParkingSlots({ setScale, scale }) {
 	const dispatch = useDispatch();
+	const parkingRef = useRef(null);
 	const { payload: carParked } = useSelector(selectParked);
 	const slotRefs = {
 		0: useRef(null),
@@ -33,6 +34,7 @@ export default function ParkingSlots() {
 			newPositions[index] = { top, bottom, left, right };
 		});
 		dispatch(setSlotsPositions(newPositions));
+		setScaleWrap();
 	}
 
 	useEffect(() => {
@@ -58,8 +60,19 @@ export default function ParkingSlots() {
 			</div>
 		));
 	}
+	function setScaleWrap() {
+		const windowWidth = window.innerWidth;
+		const sceneWidth = parkingRef.current.offsetWidth;
+		if (sceneWidth > windowWidth) setScale(windowWidth / sceneWidth);
+	}
+	useEffect(() => {
+		getSlotsPositions();
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [scale]);
+
 	return (
-		<div className='parking-slots flex-container'>
+		<div ref={parkingRef} className='parking-slots flex-container'>
 			<div className='parking-slots-container flex-container'>
 				<div className='slot-line'></div>
 				{toParkingSlots([0, 1, 2, 3, 4])}

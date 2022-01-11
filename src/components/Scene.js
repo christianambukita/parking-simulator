@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -8,6 +9,7 @@ import ParkingSlots from './ParkingSlots';
 import { selectCar, selectSlots, setParked } from './redux/SceneSlice';
 
 export default function Scene() {
+	const [scale, setScale] = useState(1);
 	const { payload: carPosition } = useSelector(selectCar);
 	const { payload: slotsPositions } = useSelector(selectSlots);
 	const dispatch = useDispatch();
@@ -32,11 +34,10 @@ export default function Scene() {
 			isCarParked();
 		}
 	}, [carPosition, dispatch, slotsPositions]);
-
 	return (
 		<div className='scene-container flex-container'>
-			<div className='scene'>
-				<ParkingSlots />
+			<div className='scene' style={{ transform: `scale(${scale})` }}>
+				<ParkingSlots setScale={setScale} scale={scale} />
 				<Car />
 				<DummyCar />
 			</div>
