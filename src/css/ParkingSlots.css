@@ -39,7 +39,15 @@
 	height: var(--slot-height);
 }
 
+.target {
+	box-sizing: border-box;
+	--target-color: hsla(45, 90%, 50%, 0.8);
+	content: 'PARK HERE';
+	border: 20px solid var(--target-color);
+	color: var(--target-color);
+}
+
 .parked {
 	box-sizing: border-box;
-	border: 15px solid hsla(100, 50%, 50%, 0.5);
+	border: 20px solid hsla(100, 50%, 50%, 0.5);
 }

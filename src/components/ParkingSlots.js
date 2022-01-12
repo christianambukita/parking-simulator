@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import '../css/ParkingSlots.css';
+import { selectTargetSlot } from './redux/AppSlice';
 import { selectParked, setSlotsPositions } from './redux/SceneSlice';
 
 let initialState = {};
@@ -12,7 +13,9 @@ for (let i = 0; i < 10; i++) {
 export default function ParkingSlots({ setScale, scale }) {
 	const dispatch = useDispatch();
 	const parkingRef = useRef(null);
-	const { payload: carParked } = useSelector(selectParked);
+	const carParked = useSelector(selectParked);
+	const targetSlot = useSelector(selectTargetSlot);
+
 	const slotRefs = {
 		0: useRef(null),
 		1: useRef(null),
@@ -53,9 +56,10 @@ export default function ParkingSlots({ setScale, scale }) {
 			<div className='flex-container' key={`p-${index}`}>
 				<div
 					ref={slotRefs[index]}
-					className={`slot${
-						carParked && carParked[index] ? ' parked' : ''
-					}`}></div>
+					className={`slot${carParked && carParked[index] ? ' parked' : ''}${
+						targetSlot !== null && targetSlot === index ? ' target' : ''
+					}
+					`}></div>
 				<div className='slot-line'></div>
 			</div>
 		));

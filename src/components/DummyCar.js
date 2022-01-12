@@ -8,7 +8,7 @@ export default function DummyCar({ slot, scale }) {
 		width: 120,
 		height: 200,
 	};
-	const { payload: slotsPositions } = useSelector(selectSlots);
+	const slotsPositions = useSelector(selectSlots);
 	function getPosition() {
 		if (slotsPositions) {
 			let {

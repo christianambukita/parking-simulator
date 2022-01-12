@@ -21,14 +21,14 @@ export const sceneSlice = createSlice({
 	initialState,
 
 	reducers: {
-		setCarPosition: (state, payload) => {
-			state.carPosition = payload;
+		setCarPosition: (state, action) => {
+			state.carPosition = action.payload;
 		},
-		setSlotsPositions: (state, payload) => {
-			state.slotsPositions = payload;
+		setSlotsPositions: (state, action) => {
+			state.slotsPositions = action.payload;
 		},
-		setParked: (state, payload) => {
-			state.carParked = payload;
+		setParked: (state, action) => {
+			state.carParked = action.payload;
 		},
 	},
 });

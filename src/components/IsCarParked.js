@@ -6,8 +6,8 @@ import { selectCar, selectSlots, setParked } from './redux/SceneSlice';
 export default function IsCarParkedComponent() {
 	// Parking detection logic is placed in this dummy component to avoid excessive
 	// rerenders of other components since it triggers a rerender on every car step
-	const { payload: carPosition } = useSelector(selectCar);
-	const { payload: slotsPositions } = useSelector(selectSlots);
+	const carPosition = useSelector(selectCar);
+	const slotsPositions = useSelector(selectSlots);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
