@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCar, selectSlots, setParked } from './redux/SceneSlice';
 
-export default function IsCarParkedComponent() {
+export default function AppLogic() {
 	// Parking detection logic is placed in this dummy component to avoid excessive
 	// rerenders of other components since it triggers a rerender on every car step
 	const carPosition = useSelector(selectCar);

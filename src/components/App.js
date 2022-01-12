@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import '../css/App.css';
 import { getDummySlots, getTargetSlot } from '../utils/randomNumberFunctins';
-import IsCarParked from './IsCarParked';
+import AppLogic from './AppLogic';
 import { setTargetSlot } from './redux/AppSlice';
 import Scene from './Scene';
 
@@ -28,7 +28,7 @@ function App() {
 	return (
 		<div id='app'>
 			<Scene dummySlots={dummySlots} />
-			<IsCarParked />
+			<AppLogic />
 		</div>
 	);
 }
