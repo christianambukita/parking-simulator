@@ -56,9 +56,9 @@ export default function ParkingSlots({ setScale, scale }) {
 			<div className='flex-container' key={`p-${index}`}>
 				<div
 					ref={slotRefs[index]}
-					className={`slot${carParked && carParked[index] ? ' parked' : ''}${
-						targetSlot !== null && targetSlot === index ? ' target' : ''
-					}
+					className={`slot${
+						carParked !== null && carParked === index ? ' parked' : ''
+					}${targetSlot !== null && targetSlot === index ? ' target' : ''}
 					`}></div>
 				<div className='slot-line'></div>
 			</div>
