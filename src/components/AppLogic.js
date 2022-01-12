@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	scoreIncrement,
 	selectDummySlots,
+	selectScore,
 	selectTargetSlot,
 	setDummySlots,
 } from './redux/AppSlice';
@@ -46,6 +47,7 @@ export default function AppLogic() {
 	const parkingTarget = useSelector(selectTargetSlot);
 	const dummySlots = useSelector(selectDummySlots);
 	const currentTarget = useSelector(selectTargetSlot);
+	const score = useSelector(selectScore);
 	const dummyCarCount = 5;
 	const slotsAmount = 10;
 	const colorsAmount = 12;
@@ -99,6 +101,25 @@ export default function AppLogic() {
 		dispatch(setDummySlots(newDummySlots));
 		dispatch(setTargetSlot(newTarget));
 	}, [dispatch]);
+
+	//Change dummy cars positions
+	useEffect(() => {
+		if (score !== 0 && score % 5 === 0) {
+			let newDummySlots = getDummySlots(
+				dummyCarCount,
+				slotsAmount,
+				colorsAmount,
+				carParked
+			);
+			let newTarget = getTargetSlot(
+				newDummySlots.map((slot) => slot.slot),
+				slotsAmount
+			);
+			dispatch(setDummySlots(newDummySlots));
+			dispatch(setTargetSlot(newTarget));
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [score, dispatch]);
 
 	return <></>;
 }

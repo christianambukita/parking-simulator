@@ -6,7 +6,12 @@ export function getUniqueRandomSlot(slotsArray, slotsAmount) {
 	return newSlot;
 }
 
-export function getDummySlots(dummyCarCount, slotsAmount, colorsAmount) {
+export function getDummySlots(
+	dummyCarCount,
+	slotsAmount,
+	colorsAmount,
+	parkedSlot = null
+) {
 	//dummyCarCount has to be lower than slotsAmount (dummyCarCount<slotsAmount)
 	if (dummyCarCount < slotsAmount) {
 		let newSlots = [];
@@ -18,7 +23,7 @@ export function getDummySlots(dummyCarCount, slotsAmount, colorsAmount) {
 
 		for (let i = 0; i < dummyCarCount; i++) {
 			let newSlot = getUniqueRandomSlot(
-				newSlots.map((e) => e.slot),
+				[...newSlots.map((e) => e.slot), parkedSlot],
 				slotsAmount
 			);
 			let newColor = getColor(colorsAmount);
