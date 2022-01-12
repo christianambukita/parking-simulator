@@ -22,4 +22,5 @@
 	left: 0;
 	background: var(--color1);
 	transform-origin: top left;
+	transform: scale(var(--scale)) translateY(var(--display-height));
 }

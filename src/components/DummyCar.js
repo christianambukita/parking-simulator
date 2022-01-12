@@ -8,6 +8,7 @@ export default function DummyCar({ slot, scale }) {
 		width: 120,
 		height: 200,
 	};
+	const displayHeight = 150;
 	const slotsPositions = useSelector(selectSlots);
 	function getPosition() {
 		if (slotsPositions) {
@@ -19,7 +20,7 @@ export default function DummyCar({ slot, scale }) {
 			} = slotsPositions[slot.slot];
 			let { width, height } = carDimensions;
 			let left = sLeft + (sWidth - width * scale) / 2;
-			let top = sTop + (sHeight - height * scale) / 2;
+			let top = sTop + (sHeight - height * scale) / 2 - displayHeight * scale;
 			left = left / scale;
 			top = top / scale;
 			return { left, top };
