@@ -1,8 +1,8 @@
 .instruction-container {
 	position: absolute;
 	right: 20px;
-	top: 40%;
-	color: white;
+	top: 45%;
+	color: var(--road-line);
 	font-size: 3em;
 	flex-direction: column;
 }
@@ -65,9 +65,17 @@
 	border-bottom-left-radius: 0.2em;
 }
 
-.instruction-use {
-	font-size: 1.8em;
+.i-text-big {
+	margin: 0;
+	padding: 0;
+	font-size: 1.75em;
 	margin-right: 20px;
+}
+.i-text {
+	margin: 0;
+	padding: 0;
+	font-weight: 600;
+	font-size: 0.8em;
 }
 .i-top {
 	margin-bottom: -30px;

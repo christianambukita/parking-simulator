@@ -5,7 +5,7 @@ export default function Instrucion() {
 	return (
 		<div className='instruction-container flex-container'>
 			<div className='flex-container i-top'>
-				<span className='instruction-use'>Use</span>
+				<p className='i-text-big'>USE</p>
 
 				<div className='keys'>
 					<div className='key k-top flex-container'>
@@ -34,7 +34,7 @@ export default function Instrucion() {
 					</div>
 				</div>
 			</div>
-			to move around
+			<p className='i-text'>TO MOVE AROUND</p>
 		</div>
 	);
 }
