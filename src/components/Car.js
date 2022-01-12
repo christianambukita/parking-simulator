@@ -31,7 +31,7 @@ const CAR_CONFIG = {
 		rotation: 5,
 	},
 };
-
+//console.log('car-render');
 export default function Car() {
 	const carRef = useRef(null);
 	const dispatch = useDispatch();

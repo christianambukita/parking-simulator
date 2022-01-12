@@ -1,4 +1,4 @@
-.scene {
+body {
 	--body-color: hsl(9, 100%, 50%);
 	--wheel-color: hsl(0, 0%, 20%);
 }
@@ -6,7 +6,9 @@
 .car {
 	--body-width: 100px;
 	--body-height: 200px;
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: var(--body-width);
 	height: var(--body-height);
 	transform: translate(var(--t-x), var(--t-y)) rotate(var(--t-r));

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import '../css/App.css';
+import IsCarParked from './IsCarParked';
 import Scene from './Scene';
 
 function getDummySlots(dummyCarCount, slotsAmount, colorsAmount) {
@@ -34,9 +35,11 @@ function App() {
 	useEffect(() => {
 		setDummySlots(getDummySlots(dummyCarCount, slotsAmount, colorsAmount));
 	}, []);
+	//console.log('app-render');
 	return (
 		<div id='app'>
 			<Scene dummySlots={dummySlots} />
+			<IsCarParked />
 		</div>
 	);
 }

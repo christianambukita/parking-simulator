@@ -25,6 +25,7 @@ export default function DummyCar({ slot, scale }) {
 			return { left, top };
 		}
 	}
+	//console.log('dummy-render');
 	return (
 		<div
 			className='dummy-car-container flex-container'
