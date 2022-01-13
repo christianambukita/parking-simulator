@@ -34,13 +34,29 @@ function isCarParked(carPosition, slotsPositions, dispatch) {
 	return carParkedSlot;
 }
 
-function isParkedAtTarget(carParkedSlot, parkingTargetSlot) {
-	return carParkedSlot === parkingTargetSlot;
+function isParkedAtTarget(carParkedSlot, parkingTarget, carAngle) {
+	let propperDir = false;
+	const propperSlot = carParkedSlot === parkingTarget?.slot;
+	let mAngle = carAngle % 360;
+	mAngle = Math.sqrt(Math.pow(mAngle, 2));
+	const checkBack = () => mAngle > 90 && mAngle < 270;
+	const checkFront = () =>
+		(mAngle > 0 && mAngle < 90) || (mAngle > 270 && mAngle < 360);
+	if (parkingTarget?.direction && checkFront()) propperDir = true;
+	if (!parkingTarget?.direction && checkBack()) propperDir = true;
+
+	//if parking target is in secound row direction is reversed
+	if (parkingTarget?.slot > 4) propperDir = !propperDir;
+
+	return propperDir && propperSlot;
 }
 
 export default function AppLogic() {
 	// Parking detection logic is placed in this dummy component to avoid excessive
 	// rerenders of other components since it triggers a rerender on every car step
+	const slotsAmount = 10;
+	const colorsAmount = 12;
+	const initialDummyCarCount = 4;
 	const carPosition = useSelector(selectCar);
 	const slotsPositions = useSelector(selectSlots);
 	const carParked = useSelector(selectParked);
@@ -48,9 +64,7 @@ export default function AppLogic() {
 	const dummySlots = useSelector(selectDummySlots);
 	const currentTarget = useSelector(selectTargetSlot);
 	const score = useSelector(selectScore);
-	const dummyCarCount = 4;
-	const slotsAmount = 10;
-	const colorsAmount = 12;
+	const [dummyCarCount, setDummyCarCount] = useState(initialDummyCarCount);
 	const dispatch = useDispatch();
 	const [targetAcquired, setTargetAcquired] = useState(false);
 
@@ -66,7 +80,11 @@ export default function AppLogic() {
 
 	//Chcek if player car is parked in target parking slot
 	useEffect(() => {
-		let newTargetAcquired = isParkedAtTarget(carParked, parkingTarget);
+		let newTargetAcquired = isParkedAtTarget(
+			carParked,
+			parkingTarget,
+			carPosition.rotationAngle
+		);
 		setTargetAcquired(newTargetAcquired);
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,6 +118,8 @@ export default function AppLogic() {
 
 		dispatch(setDummySlots(newDummySlots));
 		dispatch(setTargetSlot(newTarget));
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
 	//Change dummy cars positions
@@ -118,6 +138,11 @@ export default function AppLogic() {
 			);
 			dispatch(setDummySlots(newDummySlots));
 			dispatch(setTargetSlot(newTarget));
+		}
+		if (score !== 0 && score % 5 === 4) {
+			if (dummyCarCount < 8) {
+				setDummyCarCount(dummyCarCount + 1);
+			}
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps

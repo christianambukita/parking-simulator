@@ -34,5 +34,7 @@ export function getDummySlots(
 	return [];
 }
 export function getTargetSlot(dummySlots, slotsAmount, prevTarget = null) {
-	return getUniqueRandomSlot([...dummySlots, prevTarget], slotsAmount);
+	const direction = Math.floor(Math.random() * 2);
+	const slot = getUniqueRandomSlot([...dummySlots, prevTarget], slotsAmount);
+	return { slot, direction };
 }

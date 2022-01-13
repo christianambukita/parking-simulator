@@ -50,16 +50,23 @@ export default function ParkingSlots({ setScale, scale }) {
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
+	const isTargetSlot = (index) => targetSlot && targetSlot.slot === index;
+	function getTargetDir(index) {
+		if (!isTargetSlot(index)) return '';
+		const dir = targetSlot.direction;
+		return <p>{dir ? 'FRONT' : 'BACK'}</p>;
+	}
+	const getRow = (index) => (index < 5 ? 0 : 1);
 	function toParkingSlots(array) {
 		return array.map((index) => (
 			<div className='flex-container' key={`p-${index}`}>
 				<div
 					ref={slotRefs[index]}
 					className={`slot${
-						targetSlot !== null && targetSlot === index ? ' target' : ''
-					}
-					`}></div>
+						isTargetSlot(index) ? ' target flex-container' : ''
+					}${getRow(index) ? ' bottom' : ''}`}>
+					{getTargetDir(index)}
+				</div>
 				<div className='slot-line'></div>
 			</div>
 		));

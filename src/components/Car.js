@@ -168,7 +168,8 @@ export default function Car() {
 	useEffect(() => {
 		const box = carRef.current.getBoundingClientRect();
 		const { top, bottom, left, right } = box;
-		dispatch(setCarPosition({ top, bottom, left, right }));
+		const { rotationAngle } = carPosition;
+		dispatch(setCarPosition({ top, bottom, left, right, rotationAngle }));
 	}, [carPosition, dispatch]);
 
 	useEffect(() => {
