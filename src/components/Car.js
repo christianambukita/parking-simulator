@@ -22,8 +22,8 @@ const CAR_CONFIG = {
 	},
 	initialPosition: {
 		translation: {
-			x: 80,
-			y: 380,
+			x: 10,
+			y: 320,
 		},
 		rotationAngle: 90,
 	},
@@ -152,6 +152,7 @@ export default function Car() {
 				return;
 		}
 	}
+
 	useEffect(() => {
 		const box = carRef.current.getBoundingClientRect();
 		const { top, bottom, left, right } = box;
@@ -159,17 +160,18 @@ export default function Car() {
 	}, [carPosition, dispatch]);
 
 	useEffect(() => {
-		carRef && carRef.current.focus();
+		carRef?.current.focus();
 	}, []);
 	useEffect(() => {
-		if (carRef) {
-			const focusCar = () => {
-				carRef.current.focus();
-			};
+		const focusCar = () => {
+			carRef?.current.focus();
+			console.log('focus');
+		};
+		if (carRef && carRef.current) {
 			carRef.current.addEventListener('focusout', focusCar);
 
 			return (carRef) => {
-				carRef.current.removeEventListener('focusout', focusCar);
+				carRef?.current.removeEventListener('focusout', focusCar);
 			};
 		}
 	}, [carRef]);

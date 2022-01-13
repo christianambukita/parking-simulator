@@ -6,12 +6,15 @@ body {
 .car {
 	--body-width: 100px;
 	--body-height: 200px;
+	--rear-axis: 40px;
+	--wheel-height: 50px;
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: var(--body-width);
 	height: var(--body-height);
 	transform: translate(var(--t-x), var(--t-y)) rotate(var(--t-r));
+	transform-origin: center calc(var(--body-height) - var(--rear-axis));
 }
 
 .car:focus {
@@ -36,7 +39,7 @@ body {
 .wheel {
 	background: var(--wheel-color);
 	width: 20px;
-	height: 50px;
+	height: var(--wheel-height);
 	border-radius: 5px;
 	position: absolute;
 	transform-origin: 50% 50%;
@@ -47,7 +50,7 @@ body {
 	transform: rotate(var(--wheel-angle));
 }
 .w-back {
-	bottom: 15px;
+	bottom: calc(var(--wheel-height) - var(--rear-axis));
 }
 .w-left {
 	left: -10px;
