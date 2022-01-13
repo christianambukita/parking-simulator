@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import '../css/ParkingSlots.css';
 import { selectTargetSlot } from './redux/AppSlice';
-import { selectParked, setSlotsPositions } from './redux/SceneSlice';
+import { setSlotsPositions } from './redux/SceneSlice';
 
 let initialState = {};
 for (let i = 0; i < 10; i++) {
@@ -13,7 +13,6 @@ for (let i = 0; i < 10; i++) {
 export default function ParkingSlots({ setScale, scale }) {
 	const dispatch = useDispatch();
 	const parkingRef = useRef(null);
-	const carParked = useSelector(selectParked);
 	const targetSlot = useSelector(selectTargetSlot);
 
 	const slotRefs = {
@@ -57,8 +56,8 @@ export default function ParkingSlots({ setScale, scale }) {
 				<div
 					ref={slotRefs[index]}
 					className={`slot${
-						carParked !== null && carParked === index ? ' parked' : ''
-					}${targetSlot !== null && targetSlot === index ? ' target' : ''}
+						targetSlot !== null && targetSlot === index ? ' target' : ''
+					}
 					`}></div>
 				<div className='slot-line'></div>
 			</div>

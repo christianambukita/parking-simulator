@@ -42,9 +42,23 @@
 .target {
 	box-sizing: border-box;
 	--target-color: hsla(45, 90%, 50%, 0.8);
+	--target-color-blink: hsla(45, 90%, 50%, 0.1);
 	content: 'PARK HERE';
 	border: 20px solid var(--target-color);
 	color: var(--target-color);
+	animation: target-blink 2s ease-in-out infinite;
+}
+
+@keyframes target-blink {
+	0% {
+		border-color: var(--target-color);
+	}
+	40% {
+		border-color: var(--target-color);
+	}
+	70% {
+		border-color: var(--target-color-blink);
+	}
 }
 
 .parked {

@@ -89,7 +89,7 @@ export default function Car() {
 			//Radius from wheel center to center of rotation
 			let R = wheel.distance.vertical * Math.tan(degToRad(GAMMA));
 			//Radius from car center of symetry to center of rotation
-			//R += wheel.distance.horizontal / 2
+			R += wheel.distance.horizontal / 2;
 			//console.log(wheel.distance.vertical, GAMMA, R)
 			return R;
 		}
