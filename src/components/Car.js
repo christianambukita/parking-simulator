@@ -42,6 +42,21 @@ export default function Car() {
 	const [carPosition, setPosition] = useState(initialPosition);
 	const [wheelAngle, setAngle] = useState(0);
 
+	const stepDelay = 30;
+	const [loopTick, setLoopTick] = useState(false);
+	const [keysState, setKeyState] = useState({
+		ArrowLeft: false,
+		ArrowRight: false,
+		ArrowUp: false,
+		ArrowDown: false,
+	});
+
+	const keyEventLogger = function (e) {
+		e.preventDefault();
+		let keyState = e.type === 'keydown';
+		setKeyState({ ...keysState, [e.key]: keyState });
+	};
+
 	function setTranslation(
 		direction,
 		{ translation: oldT, rotationAngle: oldR } = carPosition
@@ -129,29 +144,26 @@ export default function Car() {
 		return { translation, rotationAngle };
 	}
 
-	function handleKeyDown(e) {
-		let { key } = e;
-		switch (key) {
-			case 'ArrowUp':
-				e.preventDefault();
-				setTranslation(true);
-				break;
-			case 'ArrowDown':
-				e.preventDefault();
-				setTranslation(false);
-				break;
-			case 'ArrowRight':
-				e.preventDefault();
-				setAngleWrap(true);
-				break;
-			case 'ArrowLeft':
-				e.preventDefault();
-				setAngleWrap(false);
-				break;
-			default:
-				return;
+	//main loop
+	useEffect(() => {
+		function keyFunctions(key) {
+			const functions = {
+				ArrowUp: () => setTranslation(true),
+				ArrowDown: () => setTranslation(false),
+				ArrowRight: () => setAngleWrap(true),
+				ArrowLeft: () => setAngleWrap(false),
+			};
+
+			return functions[key]();
 		}
-	}
+		Object.keys(keysState).forEach((key) => {
+			if (keysState[key]) {
+				keyFunctions(key);
+			}
+		});
+		setTimeout(() => setLoopTick(!loopTick), stepDelay);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [loopTick]);
 
 	useEffect(() => {
 		const box = carRef.current.getBoundingClientRect();
@@ -160,8 +172,13 @@ export default function Car() {
 	}, [carPosition, dispatch]);
 
 	useEffect(() => {
+		//focus car to enable key events
 		carRef?.current.focus();
+
+		//start main loop
+		setLoopTick(true);
 	}, []);
+
 	useEffect(() => {
 		const focusCar = () => {
 			carRef?.current.focus();
@@ -181,8 +198,9 @@ export default function Car() {
 				ref={carRef}
 				className='car flex-container'
 				style={{ ...getPosition(carPosition), ...getWheelAngle() }}
-				onKeyDown={handleKeyDown}
-				tabIndex={0}>
+				onKeyDown={keyEventLogger}
+				onKeyUp={keyEventLogger}
+				tabIndex={1}>
 				<div id='wheel-fl' className='wheel w-left w-front'></div>
 				<div id='wheel-fr' className='wheel w-right w-front'></div>
 				<div id='wheel-bl' className='wheel w-left w-back'></div>

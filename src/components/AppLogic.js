@@ -48,7 +48,7 @@ export default function AppLogic() {
 	const dummySlots = useSelector(selectDummySlots);
 	const currentTarget = useSelector(selectTargetSlot);
 	const score = useSelector(selectScore);
-	const dummyCarCount = 5;
+	const dummyCarCount = 4;
 	const slotsAmount = 10;
 	const colorsAmount = 12;
 	const dispatch = useDispatch();
@@ -104,7 +104,7 @@ export default function AppLogic() {
 
 	//Change dummy cars positions
 	useEffect(() => {
-		if (score !== 0 && score % 5 === 0) {
+		if (score !== 0 && score % 1 === 0) {
 			let newDummySlots = getDummySlots(
 				dummyCarCount,
 				slotsAmount,
@@ -113,11 +113,13 @@ export default function AppLogic() {
 			);
 			let newTarget = getTargetSlot(
 				newDummySlots.map((slot) => slot.slot),
-				slotsAmount
+				slotsAmount,
+				carParked
 			);
 			dispatch(setDummySlots(newDummySlots));
 			dispatch(setTargetSlot(newTarget));
 		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [score, dispatch]);
 
