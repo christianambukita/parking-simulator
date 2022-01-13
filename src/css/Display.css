@@ -1,5 +1,5 @@
 body {
-	/* Make sure to update display height variable in Dummy Car component */
+	/* Make sure to update display height variable in Dummy Car component and ParkingSlots component*/
 	--display-height: 150px;
 }
 .display {

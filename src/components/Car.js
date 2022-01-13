@@ -165,7 +165,6 @@ export default function Car() {
 	useEffect(() => {
 		const focusCar = () => {
 			carRef?.current.focus();
-			console.log('focus');
 		};
 		if (carRef && carRef.current) {
 			carRef.current.addEventListener('focusout', focusCar);

@@ -14,6 +14,7 @@ export default function ParkingSlots({ setScale, scale }) {
 	const dispatch = useDispatch();
 	const parkingRef = useRef(null);
 	const targetSlot = useSelector(selectTargetSlot);
+	const displayHeight = 150;
 
 	const slotRefs = {
 		0: useRef(null),
@@ -66,7 +67,13 @@ export default function ParkingSlots({ setScale, scale }) {
 	function setScaleWrap() {
 		const windowWidth = window.innerWidth;
 		const sceneWidth = parkingRef.current.offsetWidth;
-		if (sceneWidth > windowWidth) setScale(windowWidth / sceneWidth);
+		const windowHeight = window.innerHeight;
+		const sceneHeight = parkingRef.current.offsetHeight + displayHeight;
+
+		const scaleH = windowHeight / sceneHeight;
+		const scaleW = windowWidth / sceneWidth;
+
+		setScale(scaleH < scaleW ? scaleH : scaleW);
 	}
 	useEffect(() => {
 		getSlotsPositions();
