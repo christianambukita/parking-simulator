@@ -158,6 +158,22 @@ export default function Car() {
 		dispatch(setCarPosition({ top, bottom, left, right }));
 	}, [carPosition, dispatch]);
 
+	useEffect(() => {
+		carRef && carRef.current.focus();
+	}, []);
+	useEffect(() => {
+		if (carRef) {
+			const focusCar = () => {
+				carRef.current.focus();
+			};
+			carRef.current.addEventListener('focusout', focusCar);
+
+			return (carRef) => {
+				carRef.current.removeEventListener('focusout', focusCar);
+			};
+		}
+	}, [carRef]);
+
 	return (
 		<>
 			<div
