@@ -14,6 +14,7 @@ const CAR_CONFIG = {
 	wheel: {
 		height: 50,
 		width: 20,
+		maxSteringAngle: 35,
 		distance: {
 			horizontal: 100,
 			vertical: 100,
@@ -65,7 +66,9 @@ export default function Car() {
 		let newStep = (direction ? 1 : -1) * moveStep.rotation;
 		let newAngle = wheelAngle + newStep;
 		//console.table({direction, newStep, newAngle, wheelAngle, moveStep})
-		setAngle(newAngle);
+		const maxAngle = CAR_CONFIG.wheel.maxSteringAngle;
+		const isMaxAngle = newAngle > maxAngle || newAngle < -maxAngle;
+		setAngle(isMaxAngle ? wheelAngle : newAngle);
 	}
 
 	function getPosition({ translation, rotationAngle }) {
@@ -125,14 +128,6 @@ export default function Car() {
 
 		return { translation, rotationAngle };
 	}
-
-	// useEffect(() => {
-	// 	carRef.current.scrollIntoView({
-	// 		behacior: 'smooth',
-	// 		block: 'center',
-	// 		inline: 'center',
-	// 	});
-	// }, [carPosition]);
 
 	function handleKeyDown(e) {
 		let { key } = e;
