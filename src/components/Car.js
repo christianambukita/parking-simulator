@@ -32,7 +32,68 @@ const CAR_CONFIG = {
 		rotation: 5,
 	},
 };
-//console.log('car-render');
+
+const handledKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+
+function getPosition({ translation, rotationAngle }) {
+	return {
+		'--t-x': `${translation.x}px`,
+		'--t-y': `${translation.y}px`,
+		'--t-r': `${rotationAngle}deg`,
+	};
+}
+
+function getWheelAngle(wheelAngle) {
+	return { '--wheel-angle': `${wheelAngle}deg` };
+}
+
+function getRotationRadius(wheelAngle, wheel) {
+	if (wheelAngle !== 0) {
+		let GAMMA = 90 - Math.sqrt(Math.pow(wheelAngle, 2));
+		//Radius from wheel center to center of rotation
+		let R = wheel.distance.vertical * Math.tan(degToRad(GAMMA));
+		//Radius from car center of symetry to center of rotation
+		R += wheel.distance.horizontal / 2;
+		//console.log(wheel.distance.vertical, GAMMA, R)
+		return R;
+	}
+	return 0;
+}
+
+function getCarTranslation(moveStep, wheelAngle, wheel, carPosition) {
+	const corRadius = getRotationRadius(wheelAngle, wheel);
+	let alpha = (moveStep * 360) / (2 * Math.PI * corRadius);
+	const beta = (180 - alpha) / 2;
+
+	//initial translation
+	let translation = {
+		x: 2 * corRadius * Math.pow(Math.cos(degToRad(beta)), 2),
+		y: corRadius * Math.sin(degToRad(beta * 2)),
+	};
+
+	if (!wheelAngle) {
+		translation = { x: 0, y: moveStep };
+		alpha = 0;
+	}
+
+	//additional rotation due to car rotationAngle
+	let { rotationAngle: oldAngle } = carPosition;
+	let newAngle = oldAngle + alpha;
+
+	const rotatePoint = ({ x: _x, y: _y }) => ({
+		x: _x * Math.cos(degToRad(newAngle)) - _y * Math.sin(degToRad(newAngle)),
+		y: _y * Math.cos(degToRad(newAngle)) + _x * Math.sin(degToRad(newAngle)),
+	});
+	translation = rotatePoint(translation);
+
+	//adjust x translation direction and rotation
+	const direction = wheelAngle > 0 ? -1 : 1;
+
+	let rotationAngle = alpha * direction;
+
+	return { translation, rotationAngle };
+}
+
 export default function Car() {
 	const carRef = useRef(null);
 	const dispatch = useDispatch();
@@ -44,14 +105,7 @@ export default function Car() {
 
 	const stepDelay = 30;
 	const [loopTick, setLoopTick] = useState(false);
-	const [keysState, setKeyState] = useState({
-		ArrowLeft: false,
-		ArrowRight: false,
-		ArrowUp: false,
-		ArrowDown: false,
-	});
-
-	const handledKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+	const [keysState, setKeyState] = useState({});
 
 	const keyEventLogger = function (e) {
 		e.preventDefault();
@@ -67,8 +121,12 @@ export default function Car() {
 		//direction: true = forward, false = backward
 		let newStep = (direction ? -1 : 1) * moveStep.translation;
 
-		const { translation: newT, rotationAngle: newR } =
-			getCarTranslation(newStep);
+		const { translation: newT, rotationAngle: newR } = getCarTranslation(
+			newStep,
+			wheelAngle,
+			wheel,
+			carPosition
+		);
 		let newPosition = {
 			translation: {
 				x: oldT.x + newT.x,
@@ -87,64 +145,6 @@ export default function Car() {
 		const maxAngle = CAR_CONFIG.wheel.maxSteringAngle;
 		const isMaxAngle = newAngle > maxAngle || newAngle < -maxAngle;
 		setAngle(isMaxAngle ? wheelAngle : newAngle);
-	}
-
-	function getPosition({ translation, rotationAngle }) {
-		return {
-			'--t-x': `${translation.x}px`,
-			'--t-y': `${translation.y}px`,
-			'--t-r': `${rotationAngle}deg`,
-		};
-	}
-
-	function getWheelAngle() {
-		return { '--wheel-angle': `${wheelAngle}deg` };
-	}
-
-	function getRotationRadius() {
-		if (wheelAngle !== 0) {
-			let GAMMA = 90 - Math.sqrt(Math.pow(wheelAngle, 2));
-			//Radius from wheel center to center of rotation
-			let R = wheel.distance.vertical * Math.tan(degToRad(GAMMA));
-			//Radius from car center of symetry to center of rotation
-			R += wheel.distance.horizontal / 2;
-			//console.log(wheel.distance.vertical, GAMMA, R)
-			return R;
-		}
-		return 0;
-	}
-
-	function getCarTranslation(moveStep) {
-		const corRadius = getRotationRadius();
-		let alpha = (moveStep * 360) / (2 * Math.PI * corRadius);
-		const beta = (180 - alpha) / 2;
-
-		//initial translation
-		let translation = {
-			x: 2 * corRadius * Math.pow(Math.cos(degToRad(beta)), 2),
-			y: corRadius * Math.sin(degToRad(beta * 2)),
-		};
-
-		if (!wheelAngle) {
-			translation = { x: 0, y: moveStep };
-			alpha = 0;
-		}
-
-		//additional rotation due to car rotationAngle
-		let { rotationAngle: oldAngle } = carPosition;
-		let newAngle = oldAngle + alpha;
-		const rotatePoint = ({ x: _x, y: _y }) => ({
-			x: _x * Math.cos(degToRad(newAngle)) - _y * Math.sin(degToRad(newAngle)),
-			y: _y * Math.cos(degToRad(newAngle)) + _x * Math.sin(degToRad(newAngle)),
-		});
-		translation = rotatePoint(translation);
-
-		//adjust x translation direction and rotation
-		const direction = wheelAngle > 0 ? -1 : 1;
-
-		let rotationAngle = alpha * direction;
-
-		return { translation, rotationAngle };
 	}
 
 	//main loop
@@ -201,7 +201,7 @@ export default function Car() {
 			<div
 				ref={carRef}
 				className='car flex-container'
-				style={{ ...getPosition(carPosition), ...getWheelAngle() }}
+				style={{ ...getPosition(carPosition), ...getWheelAngle(wheelAngle) }}
 				onKeyDown={keyEventLogger}
 				onKeyUp={keyEventLogger}
 				tabIndex={1}>
