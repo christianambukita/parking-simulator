@@ -51,10 +51,13 @@ export default function Car() {
 		ArrowDown: false,
 	});
 
+	const handledKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+
 	const keyEventLogger = function (e) {
 		e.preventDefault();
 		let keyState = e.type === 'keydown';
-		setKeyState({ ...keysState, [e.key]: keyState });
+		if (handledKeys.includes(e.key))
+			setKeyState({ ...keysState, [e.key]: keyState });
 	};
 
 	function setTranslation(
