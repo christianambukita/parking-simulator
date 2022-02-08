@@ -38,8 +38,8 @@ const handledKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
 
 function getPosition({ translation, rotationAngle }) {
 	return {
-		'--t-x': `${translation.x}px`,
-		'--t-y': `${translation.y}px`,
+		'--t-x': `${translation.x}em`,
+		'--t-y': `${translation.y}em`,
 		'--t-r': `${rotationAngle}deg`,
 	};
 }
@@ -110,10 +110,11 @@ export default function Car() {
 	const [keysState, setKeyState] = useState({});
 
 	const keyEventLogger = function (e) {
-		e.preventDefault();
 		let keyState = e.type === 'keydown';
-		if (handledKeys.includes(e.key))
+		if (handledKeys.includes(e.key)) {
+			e.preventDefault();
 			setKeyState({ ...keysState, [e.key]: keyState });
+		}
 	};
 
 	function setTranslation(
