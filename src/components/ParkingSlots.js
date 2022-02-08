@@ -10,11 +10,10 @@ for (let i = 0; i < 10; i++) {
 	initialState[i] = {};
 }
 
-export default function ParkingSlots({ setScale, scale }) {
+export default function ParkingSlots({ scale }) {
 	const dispatch = useDispatch();
 	const parkingRef = useRef(null);
 	const targetSlot = useSelector(selectTargetSlot);
-	const displayHeight = 150;
 
 	const slotRefs = {
 		0: useRef(null),
@@ -37,17 +36,11 @@ export default function ParkingSlots({ setScale, scale }) {
 			newPositions[index] = { top, bottom, left, right, width, height };
 		});
 		dispatch(setSlotsPositions(newPositions));
-		setScaleWrap();
 	}
 
 	useEffect(() => {
 		getSlotsPositions();
-		window.addEventListener('scroll', getSlotsPositions);
-		window.addEventListener('resize', getSlotsPositions);
-		return () => {
-			window.removeEventListener('scroll', getSlotsPositions);
-			window.removeEventListener('resize', getSlotsPositions);
-		};
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const isTargetSlot = (index) => targetSlot && targetSlot.slot === index;
@@ -71,17 +64,7 @@ export default function ParkingSlots({ setScale, scale }) {
 			</div>
 		));
 	}
-	function setScaleWrap() {
-		const windowWidth = window.innerWidth;
-		const sceneWidth = parkingRef.current.offsetWidth;
-		const windowHeight = window.innerHeight;
-		const sceneHeight = parkingRef.current.offsetHeight + displayHeight;
 
-		const scaleH = windowHeight / sceneHeight;
-		const scaleW = windowWidth / sceneWidth;
-		const scale = scaleH < scaleW ? scaleH : scaleW;
-		setScale({ scale, wide: scaleW > scaleH });
-	}
 	useEffect(() => {
 		getSlotsPositions();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
