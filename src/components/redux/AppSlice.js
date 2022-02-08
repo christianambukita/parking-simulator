@@ -4,6 +4,7 @@ const initialState = {
 	parkedAtTarget: false,
 	score: 0,
 	dummySlots: [],
+	showKeyboard: false,
 };
 
 export const appSlice = createSlice({
@@ -20,13 +21,17 @@ export const appSlice = createSlice({
 		scoreIncrement: (state) => {
 			state.score += 1;
 		},
+		toggleKeyboard: (state) => {
+			state.showKeyboard = !state.showKeyboard;
+		},
 	},
 });
 
-export const { setTargetSlot, scoreIncrement, setDummySlots } =
+export const { setTargetSlot, scoreIncrement, setDummySlots, toggleKeyboard } =
 	appSlice.actions;
 export const selectTargetSlot = (state) => state.app.targetSlot;
 export const selectScore = (state) => state.app.score;
 export const selectDummySlots = (state) => state.app.dummySlots;
+export const selectShowKeyboard = (state) => state.app.showKeyboard;
 
 export default appSlice.reducer;

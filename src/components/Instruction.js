@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Instruction.css';
+import '../css/keys.css';
 
 export default function Instrucion() {
 	return (

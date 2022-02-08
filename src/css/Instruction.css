@@ -10,60 +10,6 @@
 /* keys */
 @media (max-width: 700px) {
 }
-.keys {
-	font-size: 6px;
-	width: 30em;
-	height: 20em;
-	display: grid;
-	grid-gap: 1em;
-	grid-template-areas:
-		'. key1 .'
-		'key4 key3 key2';
-	margin-bottom: 30px;
-}
-
-.key {
-	--background: hsl(0, 0%, 70%);
-	--arrow-color: hsl(0, 0%, 30%);
-	box-sizing: border-box;
-	border: 1em solid var(--road-line);
-	border-radius: 8%;
-}
-
-.k-top {
-	grid-area: key1;
-}
-.k-right {
-	grid-area: key2;
-	transform: rotate(90deg);
-}
-.k-bottom {
-	grid-area: key3;
-	transform: rotate(180deg);
-}
-.k-left {
-	grid-area: key4;
-	transform: rotate(-90deg);
-}
-
-/* arrows */
-.arrow-container {
-	flex-direction: column;
-	margin-bottom: 1.5em;
-}
-.arrow-head {
-	box-sizing: content-box;
-	border: 1em solid transparent;
-	border-bottom: 1.6em solid var(--road-line);
-	border-radius: 10%;
-}
-.arrow-body {
-	width: 0.6em;
-	height: 2em;
-	background: var(--road-line);
-	border-bottom-left-radius: 0.2em;
-	border-bottom-left-radius: 0.2em;
-}
 
 .i-text-big {
 	margin: 0;

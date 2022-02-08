@@ -8,7 +8,7 @@
 	position: relative;
 	border-block: var(--slot-line-width) solid var(--road-line);
 
-	position: absolute;
+	/* position: absolute; */
 	left: 0;
 	top: 0;
 }
@@ -41,8 +41,6 @@
 
 .target {
 	box-sizing: border-box;
-	--target-color: hsla(45, 90%, 50%, 0.8);
-	--target-color-blink: hsla(45, 90%, 50%, 0.1);
 	--shadow-thickness: 15px;
 	content: 'PARK HERE';
 	border: 10px solid transparent;

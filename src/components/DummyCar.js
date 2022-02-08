@@ -19,10 +19,13 @@ export default function DummyCar({ slot, scale }) {
 				height: sHeight,
 			} = slotsPositions[slot.slot];
 			let { width, height } = carDimensions;
-			let left = sLeft + (sWidth - width * scale) / 2;
-			let top = sTop + (sHeight - height * scale) / 2 - displayHeight * scale;
-			left = left / scale;
-			top = top / scale;
+			let left = sLeft + (sWidth - width * scale.scale) / 2;
+			let top =
+				sTop +
+				(sHeight - height * scale.scale) / 2 -
+				displayHeight * scale.scale;
+			left = left / scale.scale;
+			top = top / scale.scale;
 			return { left, top };
 		}
 	}

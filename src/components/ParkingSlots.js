@@ -79,14 +79,13 @@ export default function ParkingSlots({ setScale, scale }) {
 
 		const scaleH = windowHeight / sceneHeight;
 		const scaleW = windowWidth / sceneWidth;
-
-		setScale(scaleH < scaleW ? scaleH : scaleW);
+		const scale = scaleH < scaleW ? scaleH : scaleW;
+		setScale({ scale, wide: scaleW > scaleH });
 	}
 	useEffect(() => {
 		getSlotsPositions();
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [scale]);
+	}, [scale.scale]);
 
 	return (
 		<div ref={parkingRef} className='parking-slots flex-container'>
