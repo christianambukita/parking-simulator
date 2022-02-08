@@ -1,6 +1,5 @@
 #keyboard {
-	width: 100%;
-	margin-top: 50px;
+	width: auto;
 	height: auto;
 	display: flex;
 	justify-content: center;
@@ -8,5 +7,5 @@
 }
 
 #keyboard .keys {
-	font-size: 3vh;
+	font-size: 1.5em;
 }

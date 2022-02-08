@@ -14,6 +14,7 @@ const initialState = {
 		8: false,
 		9: false,
 	},
+	keyboard: {},
 };
 
 export const sceneSlice = createSlice({
@@ -30,13 +31,18 @@ export const sceneSlice = createSlice({
 		setParked: (state, action) => {
 			state.carParked = action.payload;
 		},
+		setKey: (state, action) => {
+			const { key, press } = action.payload;
+			state.keyboard[key] = press;
+		},
 	},
 });
 
-export const { setCarPosition, setSlotsPositions, setParked } =
+export const { setCarPosition, setSlotsPositions, setParked, setKey } =
 	sceneSlice.actions;
 export const selectSlots = (state) => state.scene.slotsPositions;
 export const selectCar = (state) => state.scene.carPosition;
 export const selectParked = (state) => state.scene.carParked;
+export const selectKeyboard = (state) => state.scene.keyboard;
 
 export default sceneSlice.reducer;

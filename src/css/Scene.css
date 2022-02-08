@@ -16,12 +16,11 @@
 			var(--slot-line-width)
 	);
 
-	width: var(--parking-width);
-	height: var(--parking-height);
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: var(--color1);
+	display: flex;
+	width: var(--parking-width);
 	transform-origin: top left;
 	transform: scale(var(--scale)) translateY(var(--display-height));
 }

@@ -1,7 +1,7 @@
 .instruction-container {
 	position: absolute;
 	right: 20px;
-	top: 45%;
+	top: 380px;
 	color: var(--road-line);
 	font-size: 3em;
 	flex-direction: column;

@@ -122,7 +122,7 @@ export default function AppLogic() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch]);
 
-	//Change dummy cars positions
+	//Change dummy cars positions on score change
 	useEffect(() => {
 		if (score !== 0 && score % 1 === 0) {
 			let newDummySlots = getDummySlots(

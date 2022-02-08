@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import '../css/Car.css';
-import { setCarPosition } from './redux/SceneSlice';
+import { selectKeyboard, setCarPosition } from './redux/SceneSlice';
 
 const degToRad = (deg) => (deg * Math.PI) / 180;
 
@@ -97,6 +98,7 @@ function getCarTranslation(moveStep, wheelAngle, wheel, carPosition) {
 export default function Car() {
 	const carRef = useRef(null);
 	const dispatch = useDispatch();
+	const screenKeyboard = useSelector(selectKeyboard);
 
 	const { wheel, initialPosition, moveStep } = CAR_CONFIG;
 
@@ -159,6 +161,11 @@ export default function Car() {
 
 			return functions[key]();
 		}
+		Object.keys(screenKeyboard).forEach((key) => {
+			if (screenKeyboard[key]) {
+				keyFunctions(key);
+			}
+		});
 		Object.keys(keysState).forEach((key) => {
 			if (keysState[key]) {
 				keyFunctions(key);

@@ -9,6 +9,8 @@
 	border-block: var(--slot-line-width) solid var(--road-line);
 
 	/* position: absolute; */
+	margin-bottom: 50px;
+	margin-right: 50px;
 	left: 0;
 	top: 0;
 }
