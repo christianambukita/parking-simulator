@@ -1,7 +1,7 @@
 .dummy-car-container {
 	position: absolute;
-	width: 120px;
-	height: 200px;
+	width: 120em;
+	height: 200em;
 	top: 0;
 	left: 0;
 }
@@ -22,26 +22,26 @@
 	--c0: hsl(0, 0%, 90%);
 
 	background: var(--c9);
-	width: 100px;
-	height: 200px;
+	width: 100em;
+	height: 200em;
 	border-top-left-radius: 30%;
 	border-top-right-radius: 30%;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20em;
+	border-bottom-right-radius: 20em;
 }
 
 .dummy-car-wheels {
 	background: var(--wheel-color);
-	width: 120px;
-	height: 50px;
-	border-radius: 5px;
+	width: 120em;
+	height: 50em;
+	border-radius: 5em;
 	position: absolute;
 }
 
 .d-c-top {
-	top: 35px;
+	top: 35em;
 }
 
 .d-c-bottom {
-	bottom: 15px;
+	bottom: 15em;
 }

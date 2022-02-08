@@ -1,11 +1,11 @@
 body {
 	/* Make sure to update display height variable in Dummy Car component and ParkingSlots component*/
-	--display-height: 150px;
+	--display-height: 150em;
 }
 .top-bar {
 	height: var(--display-height);
 	position: absolute;
-	top: calc(0px - var(--display-height));
+	top: calc(0em - var(--display-height));
 	color: var(--road-line);
 	width: 100%;
 	display: flex;
@@ -14,25 +14,29 @@ body {
 }
 .score-display {
 	font-weight: 400;
-	font-size: 5em;
+	font-size: 80em;
 	margin: 0;
-	padding-inline: 20px;
+	padding-inline: 0.5em;
 }
 
 .top-bar button {
+	font-size: 1px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	background: var(--ground-1);
 	color: white;
-	border: 15px solid var(--road-line);
-	border-radius: 5px;
+	border: 15em solid var(--road-line);
+	border-radius: 5em;
 	font-weight: 500;
-	width: 215px;
-	font-size: 1.8em;
+	width: 215em;
+}
+
+.top-bar button span {
+	font-size: 29em;
 }
 
 .top-bar button:hover {
 	color: var(--target-color);
-	border: 15px solid var(--target-color);
+	border: 15em solid var(--target-color);
 }

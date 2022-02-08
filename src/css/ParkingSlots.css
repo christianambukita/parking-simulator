@@ -1,6 +1,6 @@
 .parking-slots {
-	height: 800px;
-	width: 1000px;
+	height: 800em;
+	width: 1000em;
 
 	background: var(--ground-1);
 	flex-direction: column;
@@ -9,8 +9,8 @@
 	border-block: var(--slot-line-width) solid var(--road-line);
 
 	/* position: absolute; */
-	margin-bottom: 50px;
-	margin-right: 50px;
+	margin-bottom: 50em;
+	margin-right: 50em;
 	left: 0;
 	top: 0;
 }
@@ -19,7 +19,7 @@
 	justify-content: space-between;
 }
 .slot-line {
-	border-radius: 3px;
+	border-radius: 3em;
 	width: var(--slot-line-width);
 	height: var(--slot-height);
 	background: var(--road-line);
@@ -28,7 +28,7 @@
 .endline {
 	width: 100%;
 	background: var(--road-line);
-	height: 20px;
+	height: 20em;
 	position: absolute;
 }
 
@@ -43,15 +43,18 @@
 
 .target {
 	box-sizing: border-box;
-	--shadow-thickness: 15px;
+	--shadow-thickness: 15em;
 	content: 'PARK HERE';
-	border: 10px solid transparent;
+	border: 10em solid transparent;
 	color: var(--target-color);
 	animation: target-blink 2s ease-in-out infinite;
 	box-shadow: inset 0 0 0 var(--shadow-thickness) var(--target-color);
 	align-items: flex-start;
-	font-size: 1.8em;
+
 	font-weight: 700;
+}
+.target p {
+	font-size: 28.8em;
 }
 
 .bottom {
@@ -75,5 +78,5 @@
 
 .parked {
 	box-sizing: border-box;
-	border: 20px solid hsla(100, 50%, 50%, 0.5);
+	border: 20em solid hsla(100, 50%, 50%, 0.5);
 }

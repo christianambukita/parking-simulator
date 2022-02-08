@@ -1,5 +1,5 @@
 .keys {
-	font-size: 6px;
+	font-size: 6em;
 	width: 30em;
 	height: 20em;
 	display: grid;
@@ -7,7 +7,7 @@
 	grid-template-areas:
 		'. key1 .'
 		'key4 key3 key2';
-	margin-bottom: 30px;
+	margin-bottom: 1.1em;
 }
 
 .key {

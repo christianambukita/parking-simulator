@@ -1,13 +1,14 @@
 body {
 	--body-color: hsl(9, 100%, 50%);
 	--wheel-color: hsl(0, 0%, 20%);
+	font-size: 1px;
 }
 
 .car {
-	--body-width: 100px;
-	--body-height: 200px;
-	--rear-axis: 40px;
-	--wheel-height: 50px;
+	--body-width: 100em;
+	--body-height: 200em;
+	--rear-axis: 40em;
+	--wheel-height: 50em;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -31,38 +32,38 @@ body {
 	height: var(--body-height);
 	border-top-left-radius: 30%;
 	border-top-right-radius: 30%;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 20em;
+	border-bottom-right-radius: 20em;
 	position: absolute;
 }
 
 .wheel {
 	background: var(--wheel-color);
-	width: 20px;
+	width: 20em;
 	height: var(--wheel-height);
-	border-radius: 5px;
+	border-radius: 5em;
 	position: absolute;
 	transform-origin: 50% 50%;
 }
 
 .w-front {
-	top: 35px;
+	top: 35em;
 	transform: rotate(var(--wheel-angle));
 }
 .w-back {
 	bottom: calc(var(--wheel-height) - var(--rear-axis));
 }
 .w-left {
-	left: -10px;
+	left: -10em;
 }
 .w-right {
-	right: -10px;
+	right: -10em;
 }
 
 /* testing */
 .point {
-	width: 1px;
-	height: 1px;
+	width: 1em;
+	height: 1em;
 	background: #fff;
 	position: absolute;
 }

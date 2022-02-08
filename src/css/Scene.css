@@ -6,10 +6,10 @@
 }
 
 .scene {
-	--parking-width: 1000px;
-	--parking-height: 800px;
-	--slot-line-width: 20px;
-	--slot-height: 240px;
+	--parking-width: 1000em;
+	--parking-height: 800em;
+	--slot-line-width: 20em;
+	--slot-height: 240em;
 	--slots-count: 5;
 	--slot-width: calc(
 		(var(--parking-width) - var(--slot-line-width)) / var(--slots-count) -

@@ -1,28 +1,25 @@
 .instruction-container {
 	position: absolute;
-	right: 20px;
-	top: 380px;
+	right: 20em;
+	top: 380em;
 	color: var(--road-line);
-	font-size: 3em;
 	flex-direction: column;
 }
 
 /* keys */
-@media (max-width: 700px) {
+@media (max-width: 700em) {
 }
 
 .i-text-big {
 	margin: 0;
 	padding: 0;
-	font-size: 1.75em;
-	margin-right: 20px;
+	font-size: 84em;
+	margin-right: 0.2em;
+	margin-bottom: -0.5em;
 }
 .i-text {
 	margin: 0;
 	padding: 0;
 	font-weight: 600;
-	font-size: 0.8em;
-}
-.i-top {
-	margin-bottom: -30px;
+	font-size: 38.4em;
 }

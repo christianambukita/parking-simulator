@@ -6,6 +6,7 @@ body {
 	--target-color: hsla(45, 90%, 50%, 0.8);
 	--target-color-blink: hsla(45, 90%, 50%, 0.1);
 	background: var(--color2);
+	font-size: 1px !important;
 }
 
 .flex-container {
