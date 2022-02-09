@@ -4,8 +4,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
+	--keyboard-scale: 1;
 }
 
 #keyboard .keys {
-	font-size: calc(var(--scale) * 30);
+	font-size: calc(var(--scale) * 30 * var(--keyboard-scale));
 }

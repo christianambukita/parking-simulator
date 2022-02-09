@@ -23,6 +23,4 @@
 	width: var(--parking-width);
 	transform-origin: top left;
 	font-size: var(--scale);
-	margin-bottom: 50em;
-	margin-right: 50em;
 }

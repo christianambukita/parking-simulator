@@ -44,7 +44,7 @@ export default function Scene() {
 				<ParkingSlots setScale={setScale} scale={scale} />
 				<Car />
 			</div>
-			<Keyboard />
+			<Keyboard scale={scale} />
 		</div>
 	);
 }
