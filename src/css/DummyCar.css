@@ -1,9 +1,7 @@
 .dummy-car-container {
-	position: absolute;
+	position: relative;
 	width: 120em;
 	height: 200em;
-	top: 0;
-	left: 0;
 }
 
 .dummy-car-body {

@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import '../css/ParkingSlots.css';
-import { selectTargetSlot } from './redux/AppSlice';
+import DummyCar from './DummyCar';
+import { selectDummySlots, selectTargetSlot } from './redux/AppSlice';
 import { setSlotsPositions } from './redux/SceneSlice';
 
 let initialState = {};
@@ -14,6 +15,7 @@ export default function ParkingSlots({ scale }) {
 	const dispatch = useDispatch();
 	const parkingRef = useRef(null);
 	const targetSlot = useSelector(selectTargetSlot);
+	const dummySlots = useSelector(selectDummySlots);
 
 	const slotRefs = {
 		0: useRef(null),
@@ -79,6 +81,16 @@ export default function ParkingSlots({ scale }) {
 			<div className='parking-slots-container flex-container'>
 				<div className='slot-line'></div>
 				{toParkingSlots([5, 6, 7, 8, 9])}
+			</div>
+			<div className='parking-slots-dummy'>
+				{dummySlots.map((slot) => (
+					<div
+						key={`dummy-${slot.slot}`}
+						className={`dummy-slot slot-${slot.slot}`}
+						style={{ '--dummy-slot': `s${slot.slot}` }}>
+						<DummyCar color={slot.color} />
+					</div>
+				))}
 			</div>
 		</div>
 	);

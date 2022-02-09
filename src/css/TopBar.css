@@ -20,7 +20,7 @@ body {
 }
 
 .top-bar button {
-	font-size: 1px;
+	font-size: inherit;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

@@ -22,5 +22,6 @@
 	display: flex;
 	width: var(--parking-width);
 	transform-origin: top left;
-	transform: scale(var(--scale)) translateY(var(--display-height));
+	font-size: var(--scale);
+	transform: translateY(var(--display-height));
 }
