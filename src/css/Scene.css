@@ -3,6 +3,8 @@
 	width: 100%;
 	position: relative;
 	overflow: hidden;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 
 .scene {
@@ -15,13 +17,12 @@
 		(var(--parking-width) - var(--slot-line-width)) / var(--slots-count) -
 			var(--slot-line-width)
 	);
-
-	position: absolute;
-	top: 0;
-	left: 0;
 	display: flex;
+	position: relative;
+	flex-direction: column;
 	width: var(--parking-width);
 	transform-origin: top left;
 	font-size: var(--scale);
-	transform: translateY(var(--display-height));
+	margin-bottom: 50em;
+	margin-right: 50em;
 }

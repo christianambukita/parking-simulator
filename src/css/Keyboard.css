@@ -1,11 +1,11 @@
 #keyboard {
-	width: auto;
-	height: auto;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 #keyboard .keys {
-	font-size: 24em;
+	font-size: calc(var(--scale) * 30);
 }

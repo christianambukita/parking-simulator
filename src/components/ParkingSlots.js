@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import '../css/ParkingSlots.css';
 import DummyCar from './DummyCar';
+import Instrucion from './Instruction';
 import { selectDummySlots, selectTargetSlot } from './redux/AppSlice';
 import { setSlotsPositions } from './redux/SceneSlice';
 
@@ -71,6 +72,7 @@ export default function ParkingSlots({ scale }) {
 					);
 				})}
 			</div>
+			<Instrucion />
 		</div>
 	);
 }

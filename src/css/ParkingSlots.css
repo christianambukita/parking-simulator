@@ -9,8 +9,7 @@
 	border-block: var(--slot-line-width) solid var(--road-line);
 
 	/* position: absolute; */
-	margin-bottom: 50em;
-	margin-right: 50em;
+
 	left: 0;
 	top: 0;
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../css/Scene.css';
 import Car from './Car';
-import Instrucion from './Instruction';
 import Keyboard from './Keyboard';
 import ParkingSlots from './ParkingSlots';
 import TopBar from './TopBar';
@@ -37,16 +36,15 @@ export default function Scene() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
-		<div className='scene-container flex-container'>
-			<div
-				className='scene'
-				style={{ '--scale': `${scale.scale}em`, flexDirection: getFlexDir() }}>
+		<div
+			className='scene-container flex-container'
+			style={{ '--scale': `${scale.scale}em`, flexDirection: getFlexDir() }}>
+			<div className='scene'>
 				<TopBar />
 				<ParkingSlots setScale={setScale} scale={scale} />
-				<Instrucion />
 				<Car />
-				<Keyboard />
 			</div>
+			<Keyboard />
 		</div>
 	);
 }

@@ -4,7 +4,6 @@ body {
 }
 .top-bar {
 	height: var(--display-height);
-	position: absolute;
 	top: calc(0em - var(--display-height));
 	color: var(--road-line);
 	width: 100%;
