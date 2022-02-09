@@ -9,10 +9,11 @@ body {
 	--body-height: 200em;
 	--rear-axis: 40em;
 	--wheel-height: 50em;
+	--wheel-offset: 10em;
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: var(--body-width);
+	width: calc(var(--body-width) + (var(--wheel-offset) * 2));
 	height: var(--body-height);
 	transform: translate(var(--t-x), var(--t-y)) rotate(var(--t-r));
 	transform-origin: center calc(var(--body-height) - var(--rear-axis));
@@ -54,10 +55,10 @@ body {
 	bottom: calc(var(--wheel-height) - var(--rear-axis));
 }
 .w-left {
-	left: -10em;
+	left: 0em;
 }
 .w-right {
-	right: -10em;
+	right: 0em;
 }
 
 /* testing */
